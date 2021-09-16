@@ -1,4 +1,4 @@
-package com.example.dataingestionsvc;
+package com.personal.dataingestionsvc.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -6,32 +6,27 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@SpringBootApplication
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+@Configuration
 @Slf4j
-public class Application {
-
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+public class SQSConfig {
 
     @Value("${aws.credentials.region}")
     private String awsRegion;
-    @Value("${aws.credentials.accessKey}")
-    private String awsAccessKey;
-    @Value("${aws.credentials.secretKey}")
-    private String awsSecretKey;
+    @Autowired
+    BasicAWSCredentials basicAWSCredentials;
 
     @Bean
     public AmazonSQS amazonSQS() {
         log.info("Setting up sqs client");
-        log.info(awsAccessKey);
-        log.info(awsSecretKey);
-        BasicAWSCredentials basicAWSCredentials = new BasicAWSCredentials(awsAccessKey, awsSecretKey);
         AmazonSQS amazonSQS =  AmazonSQSClientBuilder
                 .standard()
                 .withRegion(Regions.fromName(awsRegion))
@@ -42,4 +37,11 @@ public class Application {
 
     }
 
+    public static void main(String[] args) {
+        List<String> strs = Stream.of("a","b","c").collect(Collectors.toList());
+        List<String> strs1 =null;
+                String joined = strs1.stream().collect(Collectors.joining(","));
+
+        System.out.println(joined);
+    }
 }
