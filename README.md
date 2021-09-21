@@ -48,7 +48,7 @@ Request is being processed
 ## HealthChecks
 | Environments|Status |
 | :----| :---:|
-| [Local](http://localhost:8091/actuator/health) | [Manual](#localsetup)|
+| [Local](http://localhost:8081/actuator/health) | [Manual](#localsetup)|
 
 ## How to run this application locally
 
