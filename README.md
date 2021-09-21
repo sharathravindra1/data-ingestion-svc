@@ -1,7 +1,7 @@
 # Qualcomm 5g Data ingestion Svc
 Qualcomm - Data ingestion Svc
 
-[![Build Status](http://localhost:8080/) ]
+[![Build Status](http://localhost:8080/job/data-ingestion-svc/) ]
 
 * [Description](#desc)
 * [Tools and Technologies](#tools)
